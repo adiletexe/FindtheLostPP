@@ -1,0 +1,11 @@
+{% extends 'lostandfoundapp/base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>Home Page</h1>
+{% for item in founditems %}
+    <p>{{ item.title }}</p>
+    <p>{{ item.textfield }}</p>
+    <img width="400" height="400" src="{{ item.image.url }}" alt="photo">
+{% endfor %}
+{% endblock %}
