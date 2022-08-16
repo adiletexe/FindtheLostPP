@@ -21,15 +21,21 @@ def index(request):
 @login_required
 def create(request):
     if request.method == 'GET':
-        return render(request, 'lostandfoundapp/create.html', {'form': CreationForm})
+        return render(request, 'lostandfoundapp/create.html', {'form': CreationForm()})
     else:
-        try:
-            form = CreationForm(request.POST)
-            form.save()
-            return redirect('index')
-        except:
-            return render(request, 'lostandfoundapp/create.html', {'form': CreationForm, 'error':'Don\'t do experiments please'})
+        form = CreationForm(request.POST, request.FILES)
+        if form.is_valid():
+            try:
+                newitem = form.save(commit=False)
+                newitem.user = request.user
+                form.save()
+                return redirect('index')
+            except ValueError:
+                return render(request, 'lostandfoundapp/create.html', {'form': CreationForm(), 'error':'Don\'t do experiments please'})
+        else:
+            return render(request, 'lostandfoundapp/create.html', {'form': CreationForm(), 'error':'Don\'t do experiments please'})
 
+#auth
 def signupsystem(request):
     if request.method == "GET":
         return render(request, 'lostandfoundapp/signupsystem.html', {'form':UserCreationForm})

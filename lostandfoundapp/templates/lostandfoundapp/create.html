@@ -1,5 +1,6 @@
-Create Page
-<form method="POST">
+<h1>Create Post</h1>
+<h3>{{ error }}</h3>
+<form method="POST" action="{% url 'create' %}" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Save</button>

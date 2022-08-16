@@ -15,7 +15,7 @@ class Categories(models.Model):
 
 class FoundItems(models.Model):
     title = models.CharField(max_length=100)
-    textfield = models.CharField(max_length=400)
+    textfield = models.TextField(max_length=400)
     date = models.DateField(auto_now_add=True)
     image = models.ImageField(null=False, blank=False)
     category = models.ForeignKey(Categories, on_delete=models.SET_NULL, blank=True, null=True)
