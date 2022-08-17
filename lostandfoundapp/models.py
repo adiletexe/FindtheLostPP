@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Categories(models.Model):
@@ -18,7 +19,10 @@ class FoundItems(models.Model):
     textfield = models.TextField(max_length=400)
     date = models.DateField(auto_now_add=True)
     image = models.ImageField(null=False, blank=False)
+    email = models.EmailField(max_length=50, blank=True)
+    phonenumber = models.CharField(max_length=16, blank=True)
     category = models.ForeignKey(Categories, on_delete=models.SET_NULL, blank=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
 
     def __str__(self):

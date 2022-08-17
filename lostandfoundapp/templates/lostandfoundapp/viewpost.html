@@ -1,0 +1,14 @@
+<p>{{ post.title }}</p>
+<p>{{ post.date|date:'F d, Y' }}</p>
+<p>{{ post.textfield }}</p>
+{% if post.phonenumber %}
+    <p>{{ post.phonenumber }}</p>
+{% endif %}
+{% if post.email %}
+    <p>{{ post.email }}</p>
+{% endif %}
+{% if post.category %}
+    <p>{{ post.category }}</p>
+{% endif %}
+<img width="400" height="400" src="{{ post.image.url }}" alt="photo">
+<a href="{% url 'index' %}">Return</a>

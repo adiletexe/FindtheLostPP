@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Categories, FoundItems
 from .forms import CreationForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -18,6 +18,46 @@ def index(request):
 
     return render(request, 'lostandfoundapp/index.html', {'founditems':founditems, 'categories':categories})
 
+
+# auth
+def signupsystem(request):
+    if request.method == "GET":
+        return render(request, 'lostandfoundapp/signupsystem.html', {'form': UserCreationForm})
+    else:
+        if request.POST['password1'] != request.POST['password2']:
+            return render(request, 'lostandfoundapp/signupsystem.html',
+                          {'form': UserCreationForm, 'error': 'passwords doesn\'t match!'})
+        else:
+            try:
+                user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'])
+                user.save()
+                login(request, user)
+                return redirect('index')
+            except IntegrityError:
+                return render(request, 'lostandfoundapp/signupsystem.html',
+                              {'form': UserCreationForm, 'error': 'Username is already taken!'})
+
+
+def loginsystem(request):
+    if request.method == "GET":
+        return render(request, 'lostandfoundapp/loginsystem.html', {'form': AuthenticationForm})
+    else:
+        user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
+        if user is not None:
+            login(request, user)
+            return redirect('index')
+        else:
+            return render(request, 'lostandfoundapp/loginsystem.html',
+                          {'form': AuthenticationForm, 'error': 'Username and password doesn\'t match'})
+
+
+@login_required
+def logoutsystem(request):
+    if request.method == "POST":
+        logout(request)
+        return redirect('index')
+
+
 # Adding lost item
 @login_required
 def create(request):
@@ -36,36 +76,24 @@ def create(request):
         else:
             return render(request, 'lostandfoundapp/create.html', {'form': CreationForm(), 'error':'Don\'t do experiments please'})
 
-#auth
-def signupsystem(request):
-    if request.method == "GET":
-        return render(request, 'lostandfoundapp/signupsystem.html', {'form':UserCreationForm})
-    else:
-        if request.POST['password1'] != request.POST['password2']:
-            return render(request, 'lostandfoundapp/signupsystem.html', {'form': UserCreationForm, 'error':'passwords doesn\'t match!'})
-        else:
-            try:
-                user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'])
-                user.save()
-                login(request, user)
-                return redirect('index')
-            except IntegrityError:
-                return render(request, 'lostandfoundapp/signupsystem.html',
-                              {'form': UserCreationForm, 'error': 'Username is already taken!'})
-
-def loginsystem(request):
-    if request.method == "GET":
-        return render(request, 'lostandfoundapp/loginsystem.html', {'form': AuthenticationForm})
-    else:
-        user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
-        if user is not None:
-            login(request, user)
-            return redirect('index')
-        else:
-            return render(request, 'lostandfoundapp/loginsystem.html', {'form': AuthenticationForm, 'error':'Username and password doesn\'t match'})
+def viewpost(request, post_pk):
+    post = get_object_or_404(FoundItems, pk=post_pk)
+    return render(request, 'lostandfoundapp/viewpost.html', {'post':post})
 
 @login_required
-def logoutsystem(request):
+def myposts(request):
+    categories = Categories.objects.all()
+    category = request.GET.get('category')
+    if category is not None:
+        myposts = FoundItems.objects.filter(category__name__contains=category, user=request.user)
+    else:
+        myposts = FoundItems.objects.filter(user=request.user)
+
+    return render(request, 'lostandfoundapp/myposts.html', {'myposts': myposts, 'categories': categories})
+
+def delete(request, post_pk):
+    post = get_object_or_404(FoundItems, pk=post_pk, user=request.user)
     if request.method == "POST":
-        logout(request)
+        post.delete()
         return redirect('index')
+

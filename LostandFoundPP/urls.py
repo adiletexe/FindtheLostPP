@@ -24,8 +24,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('create/', views.create, name='create'),
-
-    #categories
+    path('delete/<int:post_pk>/', views.delete, name='delete'),
+    path('viewpost/<int:post_pk>/', views.viewpost, name='viewpost'),
+    path('myposts/', views.myposts, name='myposts'),
 
 
     #authentication

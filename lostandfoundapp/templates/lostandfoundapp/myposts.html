@@ -11,11 +11,14 @@
     {% endfor %}
 </nav>
 <br>
-{% for item in founditems %}
-    <p>{{ item.title }}</p>
-    <p>{{ item.date|date:'F d, Y' }}</p>
-    <p>{{ item.category }}</p>
+{% for post in myposts %}
+    <p>{{ post.title }}</p>
+    <p>{{ post.date|date:'F d, Y' }}</p>
+    <p>{{ post.category }}</p>
     <img width="400" height="400" src="{{ item.image.url }}" alt="photo">
-    <a href="{% url 'viewpost' item.id %}">View</a>
+    <form action="{% url 'delete' post.id %}", method="POST">
+        {% csrf_token %}
+        <button type="submit">Delete Post</button>
+    </form>
 {% endfor %}
 {% endblock %}
