@@ -20,12 +20,18 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    #website
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('create/', views.create, name='create'),
+
+    #categories
+
 
     #authentication
     path('signup/', views.signupsystem, name='signupsystem'),
     path('login/', views.loginsystem, name='loginsystem'),
     path('logout/', views.logoutsystem, name='logoutsystem'),
+
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

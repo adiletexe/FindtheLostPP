@@ -9,13 +9,14 @@ from django.contrib.auth.decorators import login_required
 
 # Home Page
 def index(request):
-    # category = request.GET.get('category')
-    # if category == None:
-    founditems = FoundItems.objects.all()
-    # else:
-    #     founditems = FoundItems.objects.filter(category__name__contains = category)
-    #
-    return render(request, 'lostandfoundapp/index.html', {'founditems':founditems})
+    categories = Categories.objects.all()
+    category = request.GET.get('category')
+    if category is not None:
+        founditems = FoundItems.objects.filter(category__name__contains = category)
+    else:
+        founditems = FoundItems.objects.all()
+
+    return render(request, 'lostandfoundapp/index.html', {'founditems':founditems, 'categories':categories})
 
 # Adding lost item
 @login_required
