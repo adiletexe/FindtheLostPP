@@ -1,3 +1,7 @@
+{% extends 'lostandfoundapp/base.html' %}
+{% load static %}
+
+{% block content %}
 <p>{{ post.title }}</p>
 <p>{{ post.date|date:'F d, Y' }}</p>
 <p>{{ post.textfield }}</p>
@@ -12,3 +16,4 @@
 {% endif %}
 <img width="400" height="400" src="{{ post.image.url }}" alt="photo">
 <a href="{% url 'index' %}">Return</a>
+{% endblock %}

@@ -23,6 +23,7 @@ urlpatterns = [
     #website
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
+    path('1', views.oldest, name='oldest'),
     path('create/', views.create, name='create'),
     path('delete/<int:post_pk>/', views.delete, name='delete'),
     path('viewpost/<int:post_pk>/', views.viewpost, name='viewpost'),

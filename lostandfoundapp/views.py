@@ -9,14 +9,24 @@ from django.contrib.auth.decorators import login_required
 
 # Home Page
 def index(request):
+    oldest = request.GET.get('oldest')
     categories = Categories.objects.all()
     category = request.GET.get('category')
     if category is not None:
-        founditems = FoundItems.objects.filter(category__name__contains = category)
+            founditems = FoundItems.objects.filter(category__name__contains = category).order_by('-date')
     else:
-        founditems = FoundItems.objects.all()
-
+        founditems = FoundItems.objects.all().order_by('-date')
     return render(request, 'lostandfoundapp/index.html', {'founditems':founditems, 'categories':categories})
+
+def oldest(request):
+    oldest = request.GET.get('oldest')
+    categories = Categories.objects.all()
+    category = request.GET.get('category')
+    if category is not None:
+        founditems = FoundItems.objects.filter(category__name__contains=category).order_by('date')
+    else:
+        founditems = FoundItems.objects.all().order_by('date')
+    return render(request, 'lostandfoundapp/oldest.html', {'founditems': founditems, 'categories': categories})
 
 
 # auth
@@ -85,9 +95,9 @@ def myposts(request):
     categories = Categories.objects.all()
     category = request.GET.get('category')
     if category is not None:
-        myposts = FoundItems.objects.filter(category__name__contains=category, user=request.user)
+        myposts = FoundItems.objects.filter(category__name__contains=category, user=request.user).order_by('-date')
     else:
-        myposts = FoundItems.objects.filter(user=request.user)
+        myposts = FoundItems.objects.filter(user=request.user).order_by('-date')
 
     return render(request, 'lostandfoundapp/myposts.html', {'myposts': myposts, 'categories': categories})
 

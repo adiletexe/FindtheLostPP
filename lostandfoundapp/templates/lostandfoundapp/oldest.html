@@ -1,0 +1,33 @@
+{% extends 'lostandfoundapp/base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>Home Page</h1>
+<h3>Categories</h3>
+<div class="categoriesnav">
+    <a href="{% url 'index' %}">All</a>
+    {% for category in categories %}
+        <a href="{% url 'index' %}?category={{ category.name }}">{{ category.name }}</a>
+    {% endfor %}
+</div>
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Sorting by:
+  </button>
+  <ul class="dropdown-menu dropdown-menu-dark">
+    <li><a class="dropdown-item active" href="{% url 'index' %}">Latest</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="{% url 'oldest' %}">Oldest</a></li>
+  </ul>
+</div>
+<h4>There are {{ founditems.count }} item{{ founditems.count|pluralize }} available now</h4>
+{% for item in founditems %}
+    <p>{{ item.title }}</p>
+    <p>{{ item.date|date:'F d, Y' }}</p>
+    {% if item.category %}
+        <p>{{ item.category }}</p>
+    {% endif %}
+    <img width="400" height="400" src="{{ item.image.url }}" alt="photo">
+    <a href="{% url 'viewpost' item.id %}">View</a>
+{% endfor %}
+{% endblock %}

@@ -5,9 +5,9 @@
 <h1>Home Page</h1>
 <h3>Categories</h3>
 <nav>
-    <a href="{% url 'index' %}">All</a>
+    <a href="{% url 'myposts' %}">All</a>
     {% for category in categories %}
-        <a href="{% url 'index' %}?category={{ category.name }}">{{ category.name }}</a>
+        <a href="{% url 'myposts' %}?category={{ category.name }}">{{ category.name }}</a>
     {% endfor %}
 </nav>
 <br>
