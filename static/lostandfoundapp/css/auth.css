@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     color: #01225c;
-
+    border: 2.5px solid #01225c;
 }
 
 
@@ -18,9 +18,9 @@ main {
 .glass {
     display: grid;
     grid-template-areas:
-    'categoriesnav nav authsystem'
-    'categoriesnav header1 header1'
-    'categoriesnav posts posts';
+    'nav nav authsystem'
+    'header1 header1 header1'
+    'info info info';
     grid-template-columns: 1fr 3fr 150px;
     grid-template-rows: 80px 185px 1fr;
     margin: 5% 0%;
@@ -74,6 +74,7 @@ nav {
     object-position: center;
     float: left;
 }
+
 .authsystem {
     grid-area: authsystem;
     width: 140px;
@@ -83,91 +84,6 @@ nav {
 }
 .authsystem {
     padding-bottom: -10px;
-}
-
-.categoriesnav {
-    grid-area: categoriesnav;
-    border-radius: 4rem;
-    background: rgba(255, 255, 255, 0.4);
-}
-.categoriesnav h3 {
-    padding-top: 90px;
-    margin-bottom: 10%;
-    font-size: 34px;
-}
-
-.categoriesnav a {
-    display: block;
-    color: #fcfcfc;
-    width: 80%;
-    min-height: 5vh;
-    font-size: 20px;
-    background: linear-gradient(to right top, #9ED2C6, #54BAB9);
-    border-radius: 2rem;
-    border: 2.5px solid #01225c;
-    text-decoration: none;
-    transition: transform .2s ease;
-    text-align: center;
-    padding-top: 7px;
-    margin: 15px 30px;
-    font-size: 20px;
-}
-
-.categoriesnav a:hover {
-    color: #01225c;
-    text-decoration: none;
-    transform: scale(1.1);
-}
-
-.posts {
-    grid-area: posts;
-    margin-bottom: 25px;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-.dropdown {
-    height: 6vh;
-    width: 100%;
-    margin-top: 20px;
-    margin-bottom: -50px;
-}
-.dropdown h4 {
-    padding: 8px 0px;
-    width: 70%;
-    height: 6vh;
-    float: left;
-    padding-left: 300px;
-}
-.dropdown1 {
-    padding: 8px 0px;
-    width: 30%;
-    height: 6vh;
-    float: right;
-}
-.card {
-    margin-top: 70px;
-    margin-left: 10px;
-    border-radius: 2rem;
-    width: 250px;
-    height: 400px;
-    float: left;
-}
-.card img {
-    border-radius: 2rem;
-    height: 250px;
-    width: 250px;
-    object-fit: cover;
-    object-position: center;
-    margin-bottom: 18px;
-}
-.card p, .card a {
-    margin-top: -10px;
-}
-.card a {
-    margin-left: 20%;
-    width: 60%;
 }
 
 .circle1,
@@ -189,6 +105,7 @@ nav {
     left: 76%;
 }
 
-
-
-
+.info {
+    margin: 25px 0px;
+    width: 400%;
+}

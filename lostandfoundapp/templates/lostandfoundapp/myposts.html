@@ -2,23 +2,33 @@
 {% load static %}
 
 {% block content %}
-<h1>Home Page</h1>
-<h3>Categories</h3>
-<nav>
-    <a href="{% url 'myposts' %}">All</a>
+
+
+<div class="categoriesnav">
+    <h3>Categories</h3>
+        <a href="{% url 'myposts' %}">All</a>
     {% for category in categories %}
         <a href="{% url 'myposts' %}?category={{ category.name }}">{{ category.name }}</a>
     {% endfor %}
-</nav>
-<br>
+</div>
+
+<div class="posts">
+    <div class="dropdown">
+        <h4>{{ myposts.count }} post{{ myposts.count|pluralize }} can be deleted now...</h4>
+    </div>
 {% for post in myposts %}
-    <p>{{ post.title }}</p>
-    <p>{{ post.date|date:'F d, Y' }}</p>
-    <p>{{ post.category }}</p>
-    <img width="400" height="400" src="{{ item.image.url }}" alt="photo">
-    <form action="{% url 'delete' post.id %}", method="POST">
-        {% csrf_token %}
-        <button type="submit">Delete Post</button>
-    </form>
+    <div class="card">
+        <img src="{{ item.image.url }}" alt="photo">
+        <p><b>{{ post.title }}</b></p>
+        <p>{{ post.date|date:'F d, Y' }}</p>
+        {% if post.category %}
+            <p> Category: {{ post.category }}</p>
+        {% endif %}
+        <form action="{% url 'delete' post.id %}", method="POST">
+            {% csrf_token %}
+            <button class="btn btn-danger" type="submit">Delete Post</button>
+        </form>
+    </div>
 {% endfor %}
+</div>
 {% endblock %}

@@ -1,0 +1,58 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'lostandfoundapp/css/auth.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'lostandfoundapp/images/LostandFoundPPIcon.png' %}">
+    <title>LostAndFound</title>
+</head>
+<body>
+    <main>
+        <section class="glass">
+        <nav>
+            <div class="nav1">
+                <a href="{% url 'index' %}">Lost Items</a>
+            </div>
+        {% if user.is_authenticated %}
+            <div class="nav2">
+                <a href="{% url 'create' %}">Create Post</a>
+            </div>
+            <div class="nav3">
+                <a href="{% url 'myposts' %}">My Posts</a>
+            </div>
+        </nav>
+        <div class="authsystem">
+            <p>Logged in as <b>{{ user.username }}</b></p>
+            <form action="{% url 'logoutsystem' %}" method="POST">
+                {% csrf_token %}
+                <button class="btn btn-primary" type="submit">Logout</button>
+            </form>
+        {% else %}
+            <ul>
+                <li><a href="{% url 'signupsystem' %}">Sign Up</a></li>
+                <li><a href="{% url 'loginsystem' %}">Login</a></li>
+            </ul>
+        {% endif %}
+        </div>
+
+        <div class="header1">
+            <img src="{% static 'lostandfoundapp/images/LostandFoundPPIcon.png' %}">
+            <h1>Online Lost and Found</h1>
+            <h3>Find what you lost, at it's zero cost!</h3>
+        </div>
+            <div class="info">
+                {% block content %}{% endblock %}
+            </div>
+        </section>
+    </main>
+    <div class="circle1"></div>
+    <div class="circle2"></div>
+</body>
+</html>
