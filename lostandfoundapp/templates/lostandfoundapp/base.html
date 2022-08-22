@@ -17,16 +17,22 @@
     <main>
         <section class="glass">
         <nav>
-            <a href="{% url 'index' %}">Lost Items</a>
+            <div class="nav1">
+                <a href="{% url 'index' %}">Lost Items</a>
+            </div>
         {% if user.is_authenticated %}
-            <a href="{% url 'create' %}">Create Post</a>
-            <a href="{% url 'myposts' %}">My Posts</a>
+            <div class="nav2">
+                <a href="{% url 'create' %}">Create Post</a>
+            </div>
+            <div class="nav3">
+                <a href="{% url 'myposts' %}">My Posts</a>
+            </div>
         </nav>
         <div class="authsystem">
-            <h3>Logged in as {{ user.username }}</h3>
+            <p>Logged in as <b>{{ user.username }}</b></p>
             <form action="{% url 'logoutsystem' %}" method="POST">
                 {% csrf_token %}
-                <button type="submit">Logout</button>
+                <button class="btn btn-primary" type="submit">Logout</button>
             </form>
         {% else %}
             <ul>
@@ -39,6 +45,7 @@
         <div class="header1">
             <img src="{% static 'lostandfoundapp/images/LostandFoundPPIcon.png' %}">
             <h1>Online Lost and Found</h1>
+            <h3>Find what you lost, at it's zero cost!</h3>
         </div>
             {% block content %}{% endblock %}
         </section>

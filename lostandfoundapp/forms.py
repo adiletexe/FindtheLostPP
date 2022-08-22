@@ -4,6 +4,6 @@ from .models import FoundItems
 class CreationForm(ModelForm):
     class Meta:
         model = FoundItems
-        fields = ['title', 'textfield', 'image', 'category']
+        fields = ['title', 'textfield', 'image', 'category', 'phonenumber', 'email']
 
 
