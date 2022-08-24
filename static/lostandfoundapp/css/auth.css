@@ -118,7 +118,7 @@ nav {
     margin-top: 3px;
 }
 
-.username input, .password1 input, .password2 input, .password input {
+.username input, .password1 input, .password2 input, .password input, .dropdown select {
     padding: 0.5%;
     text-align: center;
     color: #01225c;
@@ -130,7 +130,7 @@ nav {
 	letter-spacing: 1px;
 }
 
-.username input:hover, .password1 input:hover, .password2 input:hover, .password input:hover {
+.username input:hover, .password1 input:hover, .password2 input:hover, .password input:hover, .dropdown select:hover {
     text-align: center;
     color: #01225c;
 	border: 6px solid rgba(255, 255, 255, 0.5);
