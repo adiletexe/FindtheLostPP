@@ -1,19 +1,23 @@
-{% extends 'lostandfoundapp/base.html' %}
+{% extends 'lostandfoundapp/baseforauth.html' %}
 {% load static %}
 
 {% block content %}
-<p>{{ post.title }}</p>
-<p>{{ post.date|date:'F d, Y' }}</p>
-<p>{{ post.textfield }}</p>
-{% if post.phonenumber %}
-    <p>{{ post.phonenumber }}</p>
-{% endif %}
-{% if post.email %}
-    <p>{{ post.email }}</p>
-{% endif %}
-{% if post.category %}
-    <p>{{ post.category }}</p>
-{% endif %}
-<img width="400" height="400" src="{{ post.image.url }}" alt="photo">
-<a href="{% url 'index' %}">Return</a>
+<div class="info">
+    <div class="viewpost">
+    <h1>{{ post.title }}</h1>
+    {% if post.category %}
+        <h3>Category: {{ post.category }}</h3>
+    {% endif %}
+    <h5>{{ post.date|date:'F d, Y' }}</h5>
+    <img src="{{ post.image.url }}" alt="photo">
+    <h3>{{ post.textfield }}</h3>
+    {% if post.phonenumber %}
+        <h4>Phone number: {{ post.phonenumber }}</h4>
+    {% endif %}
+    {% if post.email %}
+        <h4>Email: {{ post.email }}</h4>
+    {% endif %}
+    <a href="{% url 'index' %}">Return</a>
+    </div>
+</div>
 {% endblock %}

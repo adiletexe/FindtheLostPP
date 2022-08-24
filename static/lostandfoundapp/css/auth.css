@@ -108,6 +108,16 @@ nav {
     text-decoration: none;
     transform: scale(1.1);
 }
+
+.info img {
+    border-radius: 2rem;
+    max-height: 500px;
+    object-fit: cover;
+    object-position: center;
+    margin-bottom: 40px;
+    margin-top: 3px;
+}
+
 .username input, .password1 input, .password2 input, .password input {
     padding: 0.5%;
     text-align: center;
@@ -145,3 +155,50 @@ nav {
     top: 4%;
     left: 76%;
 }
+
+.viewpost a {
+    display: block;
+    color: #fcfcfc;
+    width: 14%;
+    padding-top: 10px;
+    min-height: 6vh;
+    font-size: 30px;
+    background: linear-gradient(to right top, #9ED2C6, #54BAB9);
+    border-radius: 2rem;
+    border: 2.5px solid #01225c;
+    text-decoration: none;
+    transition: transform .2s ease;
+    text-align: center;
+    margin-left: 44%;
+    font-size: 20px;
+    margin-top: 50px;
+}
+
+.viewpost a:hover {
+    color: #01225c;
+    text-decoration: none;
+    transform: scale(1.1);
+}
+.viewpost h1 {
+    font-size: 54px;
+    color: #01225c;
+}
+.viewpost h3 {
+    font-size: 28px;
+    color: #01225c;
+    margin-top: -20px;
+
+}
+.viewpost h5 {
+    font-size: 20px;
+    color: #5c665f;
+    margin-top: -10px;
+}
+
+.viewpost h4 {
+    font-size: 24px;
+    color: #01225c;
+    margin-top: 25px;
+    margin-bottom: -25px;
+}
+

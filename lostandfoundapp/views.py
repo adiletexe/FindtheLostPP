@@ -8,6 +8,10 @@ from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
 
 # Home Page
+def home(request):
+    return render(request, 'lostandfoundapp/home.html')
+
+@login_required
 def index(request):
     oldest = request.GET.get('oldest')
     categories = Categories.objects.all()
@@ -18,6 +22,7 @@ def index(request):
         founditems = FoundItems.objects.all().order_by('-date')
     return render(request, 'lostandfoundapp/index.html', {'founditems':founditems, 'categories':categories})
 
+@login_required
 def oldest(request):
     oldest = request.GET.get('oldest')
     categories = Categories.objects.all()
@@ -65,7 +70,7 @@ def loginsystem(request):
 def logoutsystem(request):
     if request.method == "POST":
         logout(request)
-        return redirect('index')
+        return redirect('loginsystem')
 
 
 # Adding lost item
@@ -86,6 +91,7 @@ def create(request):
         else:
             return render(request, 'lostandfoundapp/create.html', {'form': CreationForm(), 'error':'Don\'t do experiments please'})
 
+@login_required
 def viewpost(request, post_pk):
     post = get_object_or_404(FoundItems, pk=post_pk)
     return render(request, 'lostandfoundapp/viewpost.html', {'post':post})
@@ -101,6 +107,7 @@ def myposts(request):
 
     return render(request, 'lostandfoundapp/myposts.html', {'myposts': myposts, 'categories': categories})
 
+@login_required
 def delete(request, post_pk):
     post = get_object_or_404(FoundItems, pk=post_pk, user=request.user)
     if request.method == "POST":
