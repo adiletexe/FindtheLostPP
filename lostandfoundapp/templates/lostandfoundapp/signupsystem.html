@@ -1,8 +1,29 @@
-Sign Up
-<br>
-<h3>{{ error }}</h3>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign Up</button>
-</form>
+{% extends 'lostandfoundapp/baseforauth.html' %}
+{% load static %}
+
+{% block content %}
+<div class="info">
+    <h1>Sign Up</h1>
+    <h3>{{ error }}</h3>
+    <form method="POST">
+        {% csrf_token %}
+        <h5>Username</h5>
+        <div class="username">
+            {{ form.username }}
+        </div>
+        <br>
+        <h5>Password</h5>
+        <div class="password1">
+        {{ form.password1 }}
+        </div>
+        <br>
+        <h5>Password again</h5>
+        <div class="password2">
+        {{ form.password2 }}
+        </div>
+        <br>
+        <p> Already have an account? <a href="{% url 'loginsystem' %}">Login here!</a></p>
+        <button type="submit">Sign Up</button>
+    </form>
+</div>
+{% endblock %}

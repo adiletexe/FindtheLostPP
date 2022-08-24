@@ -17,16 +17,10 @@
     <main>
         <section class="glass">
         <nav>
-            <div class="nav1">
-                <a href="{% url 'index' %}">Lost Items</a>
-            </div>
-        {% if user.is_authenticated %}
-            <div class="nav2">
-                <a href="{% url 'create' %}">Create Post</a>
-            </div>
-            <div class="nav3">
-                <a href="{% url 'myposts' %}">My Posts</a>
-            </div>
+            <a href="{% url 'index' %}">Lost Items</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'create' %}">Create Post</a>
+            <a href="{% url 'myposts' %}">My Posts</a>
         </nav>
         <div class="authsystem">
             <p>Logged in as <b>{{ user.username }}</b></p>
@@ -34,12 +28,10 @@
                 {% csrf_token %}
                 <button class="btn btn-primary" type="submit">Logout</button>
             </form>
-        {% else %}
-            <ul>
-                <li><a href="{% url 'signupsystem' %}">Sign Up</a></li>
-                <li><a href="{% url 'loginsystem' %}">Login</a></li>
-            </ul>
-        {% endif %}
+            {% else %}
+                <a href="{% url 'signupsystem' %}">Sign Up</a>
+                <a href="{% url 'loginsystem' %}">Login</a>
+            {% endif %}
         </div>
 
         <div class="header1">

@@ -2,11 +2,42 @@
 {% load static %}
 
 {% block content %}
-<h1>Create Post</h1>
-<h3>{{ error }}</h3>
-<form method="POST" action="{% url 'create' %}" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save</button>
-</form>
+<div class="info">
+    <h1>Create Post</h1>
+    <h3>{{ error }}</h3>
+    <form method="POST" action="{% url 'create' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h5>Title</h5>
+        <div class="username">
+            {{ form.title }}
+        </div>
+        <br>
+        <h5>Textfield</h5>
+        <div class="username">
+        {{ form.textfield }}
+        </div>
+        <br>
+        <h5>Image</h5>
+        <div class="username">
+        {{ form.image }}
+        </div>
+        <br>
+        <h5>Category</h5>
+        <div class="username">
+        {{ form.category }}
+        </div>
+        <br>
+        <h5>Phone Number</h5>
+        <div class="username">
+        {{ form.phonenumber }}
+        </div>
+        <br>
+        <h5>Email</h5>
+        <div class="username">
+        {{ form.email }}
+        </div>
+        <br>
+        <button type="submit">Save</button>
+    </form>
+</div>
 {% endblock %}

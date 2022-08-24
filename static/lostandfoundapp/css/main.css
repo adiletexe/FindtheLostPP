@@ -3,7 +3,6 @@
     padding: 0;
     box-sizing: border-box;
     color: #01225c;
-
 }
 
 
@@ -83,6 +82,7 @@ nav {
 }
 .authsystem {
     padding-bottom: -10px;
+    z-index: 4;
 }
 
 .categoriesnav {

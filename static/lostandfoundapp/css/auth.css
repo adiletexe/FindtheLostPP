@@ -3,7 +3,6 @@
     padding: 0;
     box-sizing: border-box;
     color: #01225c;
-    border: 2.5px solid #01225c;
 }
 
 
@@ -16,13 +15,6 @@ main {
 }
 
 .glass {
-    display: grid;
-    grid-template-areas:
-    'nav nav authsystem'
-    'header1 header1 header1'
-    'info info info';
-    grid-template-columns: 1fr 3fr 150px;
-    grid-template-rows: 80px 185px 1fr;
     margin: 5% 0%;
     min-height: 80vh;
     background: white;
@@ -36,38 +28,31 @@ main {
 
 
 nav {
-    grid-area: nav;
     padding-top: 25px;
 }
-.nav1, .nav2, .nav3 {
-    width: 33%;
-    float: left;
-}
-.nav1 a {
+.nav a {
     width: 10%;
 }
 
 .header1 {
-    grid-area: header1;
-    width: 100%;
-    margin-bottom: -12px;
+    margin-top: 50px;
     border-bottom: 8px solid rgba(255, 255, 255, 0.4);
 }
 .header1 h1{
     padding-top: 25px;
-    width: 78%;
+    width: 72%;
     float:right;
     text-align: left;
     font-size: 56px;
 }
 .header1 h3{
-    width: 72%;
+    width: 68%;
     float:right;
     text-align: left;
     font-size: 30px;
 }
 .header1 img {
-    padding-left: 40px;
+    padding-left: 140px;
     border-radius: 2rem;
     height: 180px;
     object-fit: cover;
@@ -76,14 +61,70 @@ nav {
 }
 
 .authsystem {
-    grid-area: authsystem;
-    width: 140px;
+    width: 150px;
     font-size: 20px;
-    padding-top: 10px;
-    padding-right: 5px;
+    margin-left: 1170px;
+    margin-top: 70px;
+    border: 2.5px solid #01225c;
+    z-index: 4;
+    margin-bottom: -200px;
 }
-.authsystem {
-    padding-bottom: -10px;
+
+.info {
+    margin-top: 200px;
+    margin-bottom: 65px;
+    border-top: 8px solid rgba(255, 255, 255, 0.4);
+}
+.info h3 {
+    margin-top: -10px;
+    margin-bottom: 15px;
+    color: #f74420;
+}
+.info h1 {
+    margin: 30px 0px;
+    font-size: 45px;
+}
+.info h5 {
+    font-size: 24px;
+}
+.info button {
+    display: block;
+    color: #fcfcfc;
+    width: 10%;
+    min-height: 5vh;
+    font-size: 20px;
+    background: linear-gradient(to right top, #9ED2C6, #54BAB9);
+    border-radius: 2rem;
+    border: 2.5px solid #01225c;
+    text-decoration: none;
+    transition: transform .2s ease;
+    text-align: center;
+    margin-left: 45%;
+    font-size: 20px;
+}
+
+.info button:hover {
+    color: #01225c;
+    text-decoration: none;
+    transform: scale(1.1);
+}
+.username input, .password1 input, .password2 input, .password input {
+    padding: 0.5%;
+    text-align: center;
+    color: #01225c;
+	font-size: 20px;
+	border: 6px solid rgba(255, 255, 255, 0.7);
+	outline: none;
+	border-radius: 1.5rem;
+	background-color: rgba(255, 255, 255, 0.2);
+	letter-spacing: 1px;
+}
+
+.username input:hover, .password1 input:hover, .password2 input:hover, .password input:hover {
+    text-align: center;
+    color: #01225c;
+	border: 6px solid rgba(255, 255, 255, 0.5);
+	background-color: transparent;
 }
 
 .circle1,
@@ -103,9 +144,4 @@ nav {
 .circle2 {
     top: 4%;
     left: 76%;
-}
-
-.info {
-    margin: 25px 0px;
-    width: 400%;
 }

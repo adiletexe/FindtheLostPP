@@ -36,7 +36,7 @@ def signupsystem(request):
     else:
         if request.POST['password1'] != request.POST['password2']:
             return render(request, 'lostandfoundapp/signupsystem.html',
-                          {'form': UserCreationForm, 'error': 'passwords doesn\'t match!'})
+                          {'form': UserCreationForm, 'error': 'Passwords don\'t match!'})
         else:
             try:
                 user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'])
@@ -58,7 +58,7 @@ def loginsystem(request):
             return redirect('index')
         else:
             return render(request, 'lostandfoundapp/loginsystem.html',
-                          {'form': AuthenticationForm, 'error': 'Username and password doesn\'t match'})
+                          {'form': AuthenticationForm, 'error': 'Username and password doesn\'t match!'})
 
 
 @login_required
