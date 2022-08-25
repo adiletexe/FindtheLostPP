@@ -18,7 +18,7 @@
     </div>
 {% for post in myposts %}
     <div class="card">
-        <img src="{{ item.image.url }}" alt="photo">
+        <img src="{{ post.image.url }}" alt="photo">
         <p><b>{{ post.title }}</b></p>
         <p>{{ post.date|date:'F d, Y' }}</p>
         {% if post.category %}
