@@ -30,8 +30,27 @@ main {
 nav {
     padding-top: 25px;
 }
-.nav a {
-    width: 10%;
+nav a {
+    display: inline-block;
+    color: #01225c;
+    width: 20%;
+    min-height: 5vh;
+    font-size: 20px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 2rem;
+    border: 2.5px solid #01225c;
+    text-decoration: none;
+    transition: transform .2s ease;
+    text-align: center;
+    padding-top: 7px;
+    margin: 15px 30px;
+    font-size: 20px;
+}
+
+nav a:hover {
+    color: #01225c;
+    text-decoration: none;
+    transform: scale(1.1);
 }
 
 .header1 {
@@ -65,7 +84,6 @@ nav {
     font-size: 20px;
     margin-left: 1170px;
     margin-top: 70px;
-    border: 2.5px solid #01225c;
     z-index: 4;
     margin-bottom: -200px;
 }
