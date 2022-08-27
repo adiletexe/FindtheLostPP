@@ -16,12 +16,12 @@
 <body>
     <main>
         <section class="glass">
-        <nav>
+        <div class="nav">
             {% if user.is_authenticated %}
             <a href="{% url 'index' %}">Lost Items</a>
             <a href="{% url 'create' %}">Create Post</a>
             <a href="{% url 'myposts' %}">My Posts</a>
-        </nav>
+        </div>>
         <div class="authsystem">
             <p>Logged in as <b>{{ user.username }}</b></p>
             <form action="{% url 'logoutsystem' %}" method="POST">

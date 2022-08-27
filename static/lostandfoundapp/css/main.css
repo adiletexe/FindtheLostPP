@@ -34,12 +34,12 @@ main {
 }
 
 
-nav {
+.nav {
     grid-area: nav;
     padding-top: 25px;
     padding-bottom: 25px;
 }
-nav a {
+.nav a {
     display: inline-block;
     color: #01225c;
     width: 20%;
@@ -52,11 +52,11 @@ nav a {
     transition: transform .2s ease;
     text-align: center;
     padding-top: 7px;
-    margin: 15px 30px;
+    margin: 15px auto;
     font-size: 20px;
 }
 
-nav a:hover {
+.nav a:hover {
     color: #01225c;
     text-decoration: none;
     transform: scale(1.1);
